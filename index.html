@@ -41,7 +41,7 @@
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 html,body{min-height:100%}
 body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif);line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-.bg{position:fixed;inset:0;background-image:var(--hero);background-size:cover;background-position:center 18%;opacity:.13;z-index:0;pointer-events:none}
+.bg{position:fixed;inset:0;background-image:var(--hero);background-size:cover;background-position:center 18%;opacity:.13;z-index:0;pointer-events:none;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom))}
 .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(125% 78% at 50% 28%,transparent,rgba(251,247,239,.58))}
 
 .app{position:relative;z-index:1;max-width:540px;margin:0 auto;min-height:100dvh;padding:0}
@@ -87,7 +87,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
 
 /* ===== INTRO ANIMATION (car → envelope → letter) ===== */
 .intro{display:none;position:fixed;inset:0;z-index:50;background:var(--cream);pointer-events:none;overflow:hidden}
-.intro-car{position:absolute;inset:0;background-image:var(--hero);background-size:cover;background-position:center 28%}
+.intro-car{position:absolute;inset:0;background-image:var(--hero);background-size:cover;background-position:center 28%;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom))}
 .env-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .envelope{position:relative;width:min(72vw,276px);height:calc(min(72vw,276px)*.7);perspective:900px}
 .env-back{position:absolute;inset:0;z-index:0;border-radius:9px;background:linear-gradient(160deg,#F1E5D0,#E7D7BC);border:1px solid var(--gold);box-shadow:0 32px 58px -26px rgba(63,74,71,.5)}
