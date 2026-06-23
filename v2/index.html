@@ -11,8 +11,8 @@
 <meta property="og:description" content="With gratitude to Hashem, join us at the Yacht Club de Monaco. Event details, hotels & RSVP.">
 <!-- For the preview IMAGE to show in WhatsApp/iMessage: host og.jpg next to this file and change the two URLs below to the FULL address, e.g. https://your-domain/og.jpg -->
 <meta property="og:image" content="https://simseb5.github.io/wedding/v2/hero.jpg">
-<meta property="og:image:width" content="1046">
-<meta property="og:image:height" content="690">
+<meta property="og:image:width" content="1044">
+<meta property="og:image:height" content="786">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Uma & Simón — 18 August 2026 · Monaco">
 <meta name="twitter:image" content="https://simseb5.github.io/wedding/v2/hero.jpg">
@@ -520,7 +520,6 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 </script>
 
 <style id="v2-overrides">
-/* DARKER navy envelope + invite borders */
 .env-back{background:linear-gradient(160deg,#2E4E78,#1B3656);border-color:#142B49}
 .env-flap{background:linear-gradient(180deg,#2A4669,#1B3656)}
 .env-pocket{background:linear-gradient(180deg,#233E62,#15304E)}
@@ -528,36 +527,32 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 .invite-card{border-color:#234268}
 .invite-card::before{border-color:rgba(35,66,104,.45)}
 .invite-card::after{border-color:rgba(35,66,104,.30)}
-/* navy writing + gold ampersand */
 #invitation .invite-card{--slate:#2B4C77;--slate-2:#3F5C84}
 #invitation .couple .nm .amp{color:var(--gold)}
-/* remove the U&S divider monogram, keep a clean line */
 #invitation .invite-card .rule .monogram{display:none}
 #invitation .invite-card .rule{gap:0}
-/* parents' family names: each on its own single line */
 #invitation .invite-card .hosts{flex-direction:column;align-items:center;gap:3px}
 #invitation .invite-card .hosts .fam{flex:0 0 auto;text-align:center}
-/* hero: portrait, fills the screen */
 .bg{background-size:cover;background-repeat:no-repeat;background-position:center;opacity:.16}
 .intro-car{background-size:cover;background-repeat:no-repeat;background-position:center}
 @keyframes carDrive{0%{opacity:0}16%{opacity:1}100%{opacity:1}}
-/* bigger envelope */
 .envelope{width:min(94vw,480px);height:calc(min(94vw,480px)*.7)}
-/* invitation: wider, compact, fits one screen */
-#invitation.is-active{height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:6px 6px calc(var(--tabbar) + env(safe-area-inset-bottom) + 6px);box-sizing:border-box}
-.invite-card{margin:0 auto;max-width:min(98vw,520px);flex:0 0 auto;padding:clamp(16px,3.4vw,26px) clamp(16px,4.4vw,30px);gap:clamp(5px,1.1vh,9px)}
-.invite-card .blessing{font-size:clamp(.86rem,3.4vw,1.05rem)}
-.invite-card .hosts .fam{font-size:clamp(.82rem,3.1vw,1rem)}
-.invite-card .request{font-size:clamp(.84rem,3vw,1rem)}
-.invite-card .couple .nm{font-size:clamp(1.8rem,8.4vw,2.5rem)}
-.invite-card .couple .he span{font-size:clamp(.82rem,3vw,1rem)}
-.invite-card .when .date{font-size:clamp(1rem,3.7vw,1.25rem)}
-.invite-card .when .hdate{font-size:clamp(.78rem,2.6vw,.92rem)}
-.invite-card .venue{font-size:clamp(.92rem,3.3vw,1.12rem)}
-.invite-card .cer{font-size:clamp(.82rem,2.8vw,.98rem)}
-.invite-card .dress{font-size:clamp(.82rem,2.8vw,.95rem)}
-.invite-card .rsvp{font-size:clamp(.84rem,2.9vw,1rem)}
-.invite-card .bh{font-size:.85rem}
+/* invitation: near-full-width, smaller + compact, fit one screen */
+#invitation.is-active{height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:4px 3px calc(var(--tabbar) + env(safe-area-inset-bottom) + 4px);box-sizing:border-box}
+.invite-card{margin:0 auto;width:min(99vw,560px);max-width:min(99vw,560px);flex:0 0 auto;padding:clamp(11px,2.4vw,18px) clamp(14px,4vw,26px);gap:clamp(3px,.7vh,6px)}
+.invite-card .blessing,.invite-card .request,.invite-card .cer{max-width:none}
+.invite-card .blessing{font-size:clamp(.76rem,3vw,.95rem)}
+.invite-card .hosts .fam{font-size:clamp(.74rem,2.8vw,.9rem)}
+.invite-card .request{font-size:clamp(.74rem,2.7vw,.92rem)}
+.invite-card .couple .nm{font-size:clamp(1.5rem,7vw,2.05rem)}
+.invite-card .couple .he span{font-size:clamp(.74rem,2.7vw,.9rem)}
+.invite-card .when .date{font-size:clamp(.88rem,3.3vw,1.08rem)}
+.invite-card .when .hdate{font-size:clamp(.7rem,2.3vw,.84rem)}
+.invite-card .venue{font-size:clamp(.82rem,3vw,1rem)}
+.invite-card .cer{font-size:clamp(.73rem,2.5vw,.88rem)}
+.invite-card .dress{font-size:clamp(.73rem,2.5vw,.88rem)}
+.invite-card .rsvp{font-size:clamp(.74rem,2.6vw,.9rem)}
+.invite-card .bh{font-size:.78rem}
 @keyframes cardArrive{0%{opacity:0}100%{opacity:1}}
 </style>
 <script>
@@ -566,7 +561,7 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
     var card=document.querySelector('#invitation .invite-card'); if(!card) return;
     card.style.zoom='1'; var h=card.offsetHeight; if(!h) return;
     var tab=document.querySelector('.tabbar');
-    var s=Math.min(1,(window.innerHeight-(tab?tab.offsetHeight:84)-20)/h);
+    var s=Math.min(1,(window.innerHeight-(tab?tab.offsetHeight:84)-14)/h);
     card.style.zoom=s.toFixed(4);
   }
   ['DOMContentLoaded','load','resize','orientationchange'].forEach(function(e){window.addEventListener(e,fit);});
