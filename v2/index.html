@@ -531,38 +531,40 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 #invitation .couple .nm .amp{color:var(--gold)}
 #invitation .invite-card .rule .monogram{display:none}
 #invitation .invite-card .rule{gap:0}
-#invitation .invite-card .hosts{flex-direction:column;align-items:center;gap:3px}
-#invitation .invite-card .hosts .fam{flex:0 0 auto;text-align:center}
+/* parents' names side-by-side on the same line */
+#invitation .invite-card .hosts{gap:12px}
+#invitation .invite-card .hosts .fam{white-space:nowrap;font-size:clamp(.6rem,2.5vw,.82rem)}
 .bg{background-size:cover;background-repeat:no-repeat;background-position:center;opacity:.16}
 .intro-car{background-size:cover;background-repeat:no-repeat;background-position:center}
 @keyframes carDrive{0%{opacity:0}16%{opacity:1}100%{opacity:1}}
 .envelope{width:min(94vw,480px);height:calc(min(94vw,480px)*.7)}
-/* invitation: near-full-width, smaller + compact, fit one screen */
-#invitation.is-active{height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:4px 3px calc(var(--tabbar) + env(safe-area-inset-bottom) + 4px);box-sizing:border-box}
-.invite-card{margin:0 auto;width:min(99vw,560px);max-width:min(99vw,560px);flex:0 0 auto;padding:clamp(11px,2.4vw,18px) clamp(14px,4vw,26px);gap:clamp(3px,.7vh,6px)}
+/* invitation: rectangular, fills most of the screen with a small margin all around */
+#invitation.is-active{height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:10px 10px calc(var(--tabbar) + env(safe-area-inset-bottom) + 10px);box-sizing:border-box}
+.invite-card{margin:0 auto;width:min(94vw,480px);max-width:min(94vw,480px);flex:0 0 auto;justify-content:space-between;padding:clamp(18px,2.6vh,34px) clamp(16px,4.6vw,30px);gap:clamp(4px,1vh,12px)}
 .invite-card .blessing,.invite-card .request,.invite-card .cer{max-width:none}
-.invite-card .blessing{font-size:clamp(.76rem,3vw,.95rem)}
-.invite-card .hosts .fam{font-size:clamp(.74rem,2.8vw,.9rem)}
-.invite-card .request{font-size:clamp(.74rem,2.7vw,.92rem)}
-.invite-card .couple .nm{font-size:clamp(1.5rem,7vw,2.05rem)}
-.invite-card .couple .he span{font-size:clamp(.74rem,2.7vw,.9rem)}
-.invite-card .when .date{font-size:clamp(.88rem,3.3vw,1.08rem)}
-.invite-card .when .hdate{font-size:clamp(.7rem,2.3vw,.84rem)}
-.invite-card .venue{font-size:clamp(.82rem,3vw,1rem)}
-.invite-card .cer{font-size:clamp(.73rem,2.5vw,.88rem)}
-.invite-card .dress{font-size:clamp(.73rem,2.5vw,.88rem)}
-.invite-card .rsvp{font-size:clamp(.74rem,2.6vw,.9rem)}
-.invite-card .bh{font-size:.78rem}
+.invite-card .blessing{font-size:clamp(.84rem,3.2vw,1.02rem)}
+.invite-card .request{font-size:clamp(.8rem,2.9vw,1rem)}
+.invite-card .couple .nm{font-size:clamp(1.65rem,7.4vw,2.25rem)}
+.invite-card .couple .he span{font-size:clamp(.78rem,2.9vw,.96rem)}
+.invite-card .when .date{font-size:clamp(.96rem,3.5vw,1.18rem)}
+.invite-card .when .hdate{font-size:clamp(.74rem,2.4vw,.9rem)}
+.invite-card .venue{font-size:clamp(.9rem,3.2vw,1.08rem)}
+.invite-card .cer{font-size:clamp(.79rem,2.7vw,.96rem)}
+.invite-card .dress{font-size:clamp(.79rem,2.7vw,.94rem)}
+.invite-card .rsvp{font-size:clamp(.8rem,2.8vw,.96rem)}
+.invite-card .bh{font-size:.82rem}
 @keyframes cardArrive{0%{opacity:0}100%{opacity:1}}
 </style>
 <script>
 (function(){
   function fit(){
     var card=document.querySelector('#invitation .invite-card'); if(!card) return;
-    card.style.zoom='1'; var h=card.offsetHeight; if(!h) return;
+    card.style.zoom='1'; card.style.height='auto';
+    var hc=card.offsetHeight; if(!hc) return;
     var tab=document.querySelector('.tabbar');
-    var s=Math.min(1,(window.innerHeight-(tab?tab.offsetHeight:84)-14)/h);
-    card.style.zoom=s.toFixed(4);
+    var avail=window.innerHeight-(tab?tab.offsetHeight:84)-20;
+    if(hc>avail){ card.style.height='auto'; card.style.zoom=(avail/hc).toFixed(4); }
+    else { card.style.height=avail+'px'; }
   }
   ['DOMContentLoaded','load','resize','orientationchange'].forEach(function(e){window.addEventListener(e,fit);});
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
