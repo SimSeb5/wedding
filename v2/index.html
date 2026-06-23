@@ -22,7 +22,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Frank+Ruhl+Libre:wght@400;500&family=Montserrat:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
 :root{
-  --hero:url("hero.jpg");
+  --hero:url("hero-bg.jpg");
   --cream:#FBF7EF; --paper:#FFFDF9; --card-solid:#FFFDF8;
   --env:#EFE3CE; --env2:#E6D6BB; --env-flap:#F1E6D2;
   --terra:#A85F3E; --terra-2:#C07A52; --terra-soft:#F1E5DB;
@@ -254,7 +254,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
         </div>
         <p class="request">With gratitude to Hashem, request the honor of your presence at the marriage of their children</p>
         <div class="couple">
-          <div class="nm">Uma <span class="amp">&amp;</span> Simón</div>
+          <div class="nm">Uma <span class="amp">&amp;</span> Simon</div>
           <div class="he"><span dir="rtl" lang="he">רחל</span><span dir="rtl" lang="he">שמעון</span></div>
         </div>
         <div class="rule"><span class="monogram">U<span class="amp">&amp;</span>S</span></div>
@@ -265,7 +265,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
         <p class="venue">At the Yacht Club de Monaco</p>
         <p class="cer">The Chuppah ceremony will take place at 5:00 PM, followed by the reception.</p>
         <p class="dress">Dress code — Black tie</p>
-        <p class="rsvp">RSVP by July 15th (ASAP)</p>
+        <p class="rsvp">RSVP by July 15th</p>
       </div>
     </section>
 
@@ -361,7 +361,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
       <p class="bh">ב״ה</p>
       <div class="phead">
         <h2>Kindly respond</h2>
-        <p>We would be honoured to celebrate with you. Please reply by 15 July 2026 (ASAP).</p>
+        <p>We would be honoured to celebrate with you. Please reply by 15 July 2026.</p>
       </div>
 
       <div class="rsvp-card">
@@ -520,32 +520,37 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 </script>
 
 <style id="v2-overrides">
-/* ---- NAVY everything (envelope + invite borders); no more beige ---- */
-.env-back{background:linear-gradient(160deg,#3C5E8A,#274569);border-color:#1E3A5C}
-.env-flap{background:linear-gradient(180deg,#35567F,#264870)}
-.env-pocket{background:linear-gradient(180deg,#2C4C76,#1E3C5E)}
-.letter{border-color:#2B4C77}
-.invite-card{border-color:#2B4C77}
-.invite-card::before{border-color:rgba(43,76,119,.45)}
-.invite-card::after{border-color:rgba(43,76,119,.30)}
+/* DARKER navy envelope + invite borders */
+.env-back{background:linear-gradient(160deg,#2E4E78,#1B3656);border-color:#142B49}
+.env-flap{background:linear-gradient(180deg,#2A4669,#1B3656)}
+.env-pocket{background:linear-gradient(180deg,#233E62,#15304E)}
+.letter{border-color:#234268}
+.invite-card{border-color:#234268}
+.invite-card::before{border-color:rgba(35,66,104,.45)}
+.invite-card::after{border-color:rgba(35,66,104,.30)}
 /* navy writing + gold ampersand */
 #invitation .invite-card{--slate:#2B4C77;--slate-2:#3F5C84}
 #invitation .couple .nm .amp{color:var(--gold)}
-/* ---- hero fully zoomed out (whole picture), no zoom animation ---- */
-.bg{background-size:contain;background-repeat:no-repeat;background-position:center;opacity:.16}
-.intro-car{background-size:contain;background-repeat:no-repeat;background-position:center}
+/* remove the U&S divider monogram, keep a clean line */
+#invitation .invite-card .rule .monogram{display:none}
+#invitation .invite-card .rule{gap:0}
+/* parents' family names: each on its own single line */
+#invitation .invite-card .hosts{flex-direction:column;align-items:center;gap:3px}
+#invitation .invite-card .hosts .fam{flex:0 0 auto;text-align:center}
+/* hero: portrait, fills the screen */
+.bg{background-size:cover;background-repeat:no-repeat;background-position:center;opacity:.16}
+.intro-car{background-size:cover;background-repeat:no-repeat;background-position:center}
 @keyframes carDrive{0%{opacity:0}16%{opacity:1}100%{opacity:1}}
-/* ---- bigger envelope ---- */
+/* bigger envelope */
 .envelope{width:min(94vw,480px);height:calc(min(94vw,480px)*.7)}
-/* ---- invitation: wider card, smaller/compact text, fit one screen ---- */
+/* invitation: wider, compact, fits one screen */
 #invitation.is-active{height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:6px 6px calc(var(--tabbar) + env(safe-area-inset-bottom) + 6px);box-sizing:border-box}
 .invite-card{margin:0 auto;max-width:min(98vw,520px);flex:0 0 auto;padding:clamp(16px,3.4vw,26px) clamp(16px,4.4vw,30px);gap:clamp(5px,1.1vh,9px)}
 .invite-card .blessing{font-size:clamp(.86rem,3.4vw,1.05rem)}
-.invite-card .hosts .fam{font-size:clamp(.78rem,3vw,.95rem)}
+.invite-card .hosts .fam{font-size:clamp(.82rem,3.1vw,1rem)}
 .invite-card .request{font-size:clamp(.84rem,3vw,1rem)}
 .invite-card .couple .nm{font-size:clamp(1.8rem,8.4vw,2.5rem)}
 .invite-card .couple .he span{font-size:clamp(.82rem,3vw,1rem)}
-.invite-card .monogram{font-size:clamp(1.3rem,5.6vw,1.8rem)}
 .invite-card .when .date{font-size:clamp(1rem,3.7vw,1.25rem)}
 .invite-card .when .hdate{font-size:clamp(.78rem,2.6vw,.92rem)}
 .invite-card .venue{font-size:clamp(.92rem,3.3vw,1.12rem)}
@@ -559,12 +564,10 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 (function(){
   function fit(){
     var card=document.querySelector('#invitation .invite-card'); if(!card) return;
-    card.style.zoom='1';
-    var h=card.offsetHeight; if(!h) return;
+    card.style.zoom='1'; var h=card.offsetHeight; if(!h) return;
     var tab=document.querySelector('.tabbar');
-    var avail=window.innerHeight - (tab?tab.offsetHeight:84) - 20;
-    var s=Math.min(1, avail/h);
-    card.style.zoom = s.toFixed(4);
+    var s=Math.min(1,(window.innerHeight-(tab?tab.offsetHeight:84)-20)/h);
+    card.style.zoom=s.toFixed(4);
   }
   ['DOMContentLoaded','load','resize','orientationchange'].forEach(function(e){window.addEventListener(e,fit);});
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
