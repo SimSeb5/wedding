@@ -520,36 +520,56 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 </script>
 
 <style id="v2-overrides">
-/* NAVY invite writing to match the reference (scoped to the card via custom props) */
-#invitation .invite-card{--slate:#2B4C77;--slate-2:#46618C}
+/* ---- NAVY everything (envelope + invite borders); no more beige ---- */
+.env-back{background:linear-gradient(160deg,#3C5E8A,#274569);border-color:#1E3A5C}
+.env-flap{background:linear-gradient(180deg,#35567F,#264870)}
+.env-pocket{background:linear-gradient(180deg,#2C4C76,#1E3C5E)}
+.letter{border-color:#2B4C77}
+.invite-card{border-color:#2B4C77}
+.invite-card::before{border-color:rgba(43,76,119,.45)}
+.invite-card::after{border-color:rgba(43,76,119,.30)}
+/* navy writing + gold ampersand */
+#invitation .invite-card{--slate:#2B4C77;--slate-2:#3F5C84}
 #invitation .couple .nm .amp{color:var(--gold)}
-/* hero: less zoom, show more of the harbour scene */
-.bg{background-position:center 64%;opacity:.16}
-.intro-car{background-position:center 64%}
-@keyframes carDrive{0%{opacity:0;transform:scale(1.0)}14%{opacity:1}62%{opacity:1;transform:scale(1.03)}100%{opacity:.18;transform:scale(1.05)}}
-/* much bigger envelope on the front page */
-.envelope{width:min(92vw,460px);height:calc(min(92vw,460px)*.7)}
-/* invitation fits a single screen — use zoom (shrinks layout, so no scroll) */
-#invitation.is-active{height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:6px 14px calc(var(--tabbar) + env(safe-area-inset-bottom) + 6px);box-sizing:border-box}
-#invitation .invite-card{margin:0 auto;max-width:min(92vw,430px);flex:0 0 auto}
+/* ---- hero fully zoomed out (whole picture), no zoom animation ---- */
+.bg{background-size:contain;background-repeat:no-repeat;background-position:center;opacity:.16}
+.intro-car{background-size:contain;background-repeat:no-repeat;background-position:center}
+@keyframes carDrive{0%{opacity:0}16%{opacity:1}100%{opacity:1}}
+/* ---- bigger envelope ---- */
+.envelope{width:min(94vw,480px);height:calc(min(94vw,480px)*.7)}
+/* ---- invitation: wider card, smaller/compact text, fit one screen ---- */
+#invitation.is-active{height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:6px 6px calc(var(--tabbar) + env(safe-area-inset-bottom) + 6px);box-sizing:border-box}
+.invite-card{margin:0 auto;max-width:min(98vw,520px);flex:0 0 auto;padding:clamp(16px,3.4vw,26px) clamp(16px,4.4vw,30px);gap:clamp(5px,1.1vh,9px)}
+.invite-card .blessing{font-size:clamp(.86rem,3.4vw,1.05rem)}
+.invite-card .hosts .fam{font-size:clamp(.78rem,3vw,.95rem)}
+.invite-card .request{font-size:clamp(.84rem,3vw,1rem)}
+.invite-card .couple .nm{font-size:clamp(1.8rem,8.4vw,2.5rem)}
+.invite-card .couple .he span{font-size:clamp(.82rem,3vw,1rem)}
+.invite-card .monogram{font-size:clamp(1.3rem,5.6vw,1.8rem)}
+.invite-card .when .date{font-size:clamp(1rem,3.7vw,1.25rem)}
+.invite-card .when .hdate{font-size:clamp(.78rem,2.6vw,.92rem)}
+.invite-card .venue{font-size:clamp(.92rem,3.3vw,1.12rem)}
+.invite-card .cer{font-size:clamp(.82rem,2.8vw,.98rem)}
+.invite-card .dress{font-size:clamp(.82rem,2.8vw,.95rem)}
+.invite-card .rsvp{font-size:clamp(.84rem,2.9vw,1rem)}
+.invite-card .bh{font-size:.85rem}
 @keyframes cardArrive{0%{opacity:0}100%{opacity:1}}
 </style>
 <script>
 (function(){
   function fit(){
-    var card=document.querySelector('#invitation .invite-card');
-    if(!card) return;
+    var card=document.querySelector('#invitation .invite-card'); if(!card) return;
     card.style.zoom='1';
-    var h=card.offsetHeight;
-    if(!h) return;                                  // hidden tab
+    var h=card.offsetHeight; if(!h) return;
     var tab=document.querySelector('.tabbar');
-    var avail=window.innerHeight - (tab?tab.offsetHeight:84) - 22;
+    var avail=window.innerHeight - (tab?tab.offsetHeight:84) - 20;
     var s=Math.min(1, avail/h);
     card.style.zoom = s.toFixed(4);
   }
   ['DOMContentLoaded','load','resize','orientationchange'].forEach(function(e){window.addEventListener(e,fit);});
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
   var tb=document.querySelector('.tabbar'); if(tb) tb.addEventListener('click',function(){setTimeout(fit,60);});
-  setTimeout(fit,300); setTimeout(fit,1200); setTimeout(fit,7400);
+  [200,700,1500,3000,7400].forEach(function(t){setTimeout(fit,t);});
 })();
 </script>
 </body>
