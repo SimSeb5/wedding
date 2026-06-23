@@ -57,31 +57,33 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
 .rule::before,.rule::after{content:"";height:1px;flex:1}
 .rule::before{background:linear-gradient(90deg,transparent,var(--gold))}
 .rule::after{background:linear-gradient(90deg,var(--gold),transparent)}
+.monogram{font-family:var(--script);color:var(--slate);font-size:clamp(2.1rem,8vw,2.9rem);line-height:1;padding:0 10px;white-space:nowrap}
+.monogram .amp{font-size:.72em;margin:0 .02em;vertical-align:.04em}
 
 /* ===== INVITATION CARD ===== */
 .invite-card{position:relative;max-width:464px;margin:clamp(26px,6vh,62px) auto;background:var(--card-solid);border:1px solid var(--gold);border-radius:5px;box-shadow:0 32px 70px -34px rgba(63,74,71,.55);padding:clamp(34px,7vw,56px) clamp(24px,6vw,46px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(13px,2.5vh,20px)}
 .invite-card::before{content:"";position:absolute;inset:8px;border:1px solid var(--line);border-radius:4px;pointer-events:none}
 .invite-card::after{content:"";position:absolute;inset:13px;border:1px solid rgba(168,95,62,.28);border-radius:3px;pointer-events:none}
 .invite-card>*{position:relative;z-index:1;margin:0}
-.invite-card .bh{position:absolute;top:16px;right:18px;font-family:var(--heb);direction:rtl;color:var(--slate-2);font-size:1.05rem;z-index:2}
+.invite-card .bh{position:absolute;top:16px;right:18px;font-family:var(--heb);direction:rtl;color:var(--slate);font-size:1.05rem;z-index:2}
 .card-crest{width:26px;height:33px}
-.blessing{font-family:var(--heb);direction:rtl;color:var(--terra);font-size:clamp(1.08rem,4.4vw,1.4rem);line-height:1.5;max-width:30ch;font-weight:400}
+.blessing{font-family:var(--heb);direction:rtl;color:var(--slate);font-size:clamp(1.08rem,4.4vw,1.4rem);line-height:1.5;max-width:30ch;font-weight:400}
 .hosts{display:flex;justify-content:space-between;gap:16px;width:100%}
 .hosts .fam{flex:1;font-family:var(--serif);font-variant:small-caps;letter-spacing:.04em;font-size:clamp(.95rem,3.5vw,1.16rem);color:var(--slate);line-height:1.45}
 .hosts .fam.l{text-align:left}
 .hosts .fam.r{text-align:right}
 .request{font-family:var(--serif);font-variant:small-caps;letter-spacing:.05em;font-size:clamp(1.05rem,3.7vw,1.3rem);color:var(--slate);line-height:1.4;max-width:30ch}
-.couple .nm{font-family:var(--script);font-size:clamp(2.6rem,12vw,3.7rem);color:var(--terra);line-height:1.03}
+.couple .nm{font-family:var(--script);font-size:clamp(2.6rem,12vw,3.7rem);color:var(--slate);line-height:1.03}
 .couple .nm .amp{font-family:var(--script)}
 .couple .he{display:flex;justify-content:space-between;max-width:78%;margin:-2px auto 0}
-.couple .he span{font-family:var(--heb);direction:rtl;color:var(--terra-2);font-size:clamp(1.02rem,3.8vw,1.32rem)}
+.couple .he span{font-family:var(--heb);direction:rtl;color:var(--slate);font-size:clamp(1.02rem,3.8vw,1.32rem)}
 .invite-card .rule{margin:0;width:100%;max-width:240px}
 .when .date{font-family:var(--serif);font-variant:small-caps;letter-spacing:.05em;font-size:clamp(1.28rem,4.4vw,1.62rem);color:var(--slate)}
-.when .hdate{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,3vw,1.08rem);color:var(--slate-2);margin-top:2px}
+.when .hdate{font-family:var(--serif);font-style:italic;font-size:clamp(.95rem,3vw,1.08rem);color:var(--slate);margin-top:2px}
 .venue{font-family:var(--serif);font-variant:small-caps;letter-spacing:.05em;font-size:clamp(1.16rem,4vw,1.45rem);color:var(--slate)}
 .cer{font-family:var(--serif);font-variant:small-caps;letter-spacing:.04em;font-size:clamp(1.02rem,3.5vw,1.22rem);color:var(--slate);line-height:1.38;max-width:32ch}
 .dress{font-family:var(--serif);font-variant:small-caps;letter-spacing:.07em;font-size:clamp(1.02rem,3.4vw,1.14rem);color:var(--slate)}
-.rsvp{font-family:var(--serif);font-style:italic;font-size:clamp(1.08rem,3.6vw,1.22rem);color:var(--terra)}
+.rsvp{font-family:var(--serif);font-style:italic;font-size:clamp(1.08rem,3.6vw,1.22rem);color:var(--slate)}
 
 /* ===== INTRO ANIMATION (car → envelope → letter) ===== */
 .intro{display:none;position:fixed;inset:0;z-index:50;background:var(--cream);pointer-events:none;overflow:hidden}
@@ -248,7 +250,6 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
 
       <div class="invite-card">
         <p class="bh">ב״ה</p>
-        <svg class="card-crest sprig" aria-hidden="true"><use href="#i-sprig"/></svg>
         <p class="blessing">קול ששון וקול שמחה קול חתן וקול כלה</p>
         <div class="hosts">
           <p class="fam l">Carolina &amp; Patricio Fuks</p>
@@ -259,7 +260,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
           <div class="nm">Uma <span class="amp">&amp;</span> Simón</div>
           <div class="he"><span dir="rtl" lang="he">רחל</span><span dir="rtl" lang="he">שמעון</span></div>
         </div>
-        <div class="rule"><svg class="sprig"><use href="#i-sprig"/></svg></div>
+        <div class="rule"><span class="monogram">U<span class="amp">&amp;</span>S</span></div>
         <div class="when">
           <p class="date">Tuesday, August 18th, 2026</p>
           <p class="hdate">5 Elul 5786</p>
@@ -267,7 +268,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
         <p class="venue">At the Yacht Club de Monaco</p>
         <p class="cer">The Chuppah ceremony will take place at 5:00 PM, followed by the reception.</p>
         <p class="dress">Dress code — Black tie</p>
-        <p class="rsvp">RSVP by July 15th</p>
+        <p class="rsvp">RSVP by July 15th (ASAP)</p>
       </div>
     </section>
 
@@ -363,7 +364,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
       <p class="bh">ב״ה</p>
       <div class="phead">
         <h2>Kindly respond</h2>
-        <p>We would be honoured to celebrate with you. Please reply by 15 July 2026.</p>
+        <p>We would be honoured to celebrate with you. Please reply by 15 July 2026 (ASAP).</p>
       </div>
 
       <div class="rsvp-card">
@@ -386,10 +387,6 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
                 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
                 <option value="4">4</option><option value="5">5</option><option value="6">6</option>
               </select>
-            </div>
-            <div class="field">
-              <label for="r-diet">Dietary notes</label>
-              <input type="text" id="r-diet" name="dietary" placeholder="All catering is kosher — note any allergies">
             </div>
           </div>
           <div class="field">
@@ -427,7 +424,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
    • If left empty, the form opens an email to RSVP_EMAIL instead.
    ============================================================ */
 var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwRk1FyFoDPSOO3_NLs3V3orfIVaj3I_CeSRT4GJGCXDJlp9k-zUeieUKRHjBDcDDfG/exec";
-var RSVP_EMAIL    = "rsvp@umaandsimon.com";   // replace with your address
+var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only if the webhook fails)
 </script>
 <script>
 (function(){
@@ -493,7 +490,6 @@ var RSVP_EMAIL    = "rsvp@umaandsimon.com";   // replace with your address
       name: name,
       attending: attending,
       guests: attending === 'Joyfully accepts' ? document.getElementById('r-guests').value : '0',
-      dietary: attending === 'Joyfully accepts' ? document.getElementById('r-diet').value.trim() : '',
       message: document.getElementById('r-msg').value.trim(),
       event: 'Uma & Simón — 18 Aug 2026, Monaco',
       submittedAt: new Date().toISOString()
@@ -515,7 +511,7 @@ var RSVP_EMAIL    = "rsvp@umaandsimon.com";   // replace with your address
     } else {
       var subject = 'RSVP — ' + name;
       var body = 'Name: ' + data.name + '\nAttending: ' + data.attending +
-        (data.attending === 'Joyfully accepts' ? '\nGuests: ' + data.guests + '\nDietary: ' + (data.dietary||'-') : '') +
+        (data.attending === 'Joyfully accepts' ? '\nGuests: ' + data.guests : '') +
         '\nMessage: ' + (data.message||'-');
       window.location.href = 'mailto:' + RSVP_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       setTimeout(done, 400);
