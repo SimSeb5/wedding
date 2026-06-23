@@ -91,12 +91,12 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
 .env-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .envelope{position:relative;width:min(72vw,276px);height:calc(min(72vw,276px)*.7);perspective:900px}
 .env-back{position:absolute;inset:0;z-index:0;border-radius:9px;background:linear-gradient(160deg,#F1E5D0,#E7D7BC);border:1px solid var(--gold);box-shadow:0 32px 58px -26px rgba(63,74,71,.5)}
-.letter{position:absolute;left:9%;right:9%;top:8%;height:92%;z-index:2;background:var(--card-solid);border:1px solid var(--gold);border-radius:5px;box-shadow:0 14px 30px -16px rgba(63,74,71,.4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;opacity:0;transform:translateY(6%)}
+.letter{position:absolute;left:9%;right:9%;top:8%;height:92%;z-index:2;background:var(--card-solid);border:1px solid var(--gold);border-radius:5px;box-shadow:0 14px 30px -16px rgba(63,74,71,.4);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;padding:26px 16px 16px;opacity:0;transform:translateY(6%)}
 .letter .ll{height:2px;background:rgba(120,104,72,.28);border-radius:2px}
 .letter .ll:nth-child(1){width:50%}.letter .ll:nth-child(2){width:64%}.letter .ll:nth-child(3){width:42%}
 .letter .letter-mono{margin-top:6px;font-size:clamp(1.4rem,7vw,1.9rem);padding:0}
-.env-pocket{position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,#E1D0AD,#CFBA8F);clip-path:polygon(0 16%,50% 58%,100% 16%,100% 100%,0 100%);filter:drop-shadow(0 -2px 3px rgba(120,104,72,.12))}
-.env-flap{position:absolute;top:-44%;left:0;width:100%;height:70%;z-index:1;background:linear-gradient(180deg,#E7D7B8,#D4C096);clip-path:polygon(50% 0,0 100%,100% 100%)}
+.env-pocket{position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,#E1D0AD,#CFBA8F);clip-path:polygon(0 16%,50% 60%,100% 16%,100% 100%,0 100%);filter:drop-shadow(0 -2px 3px rgba(120,104,72,.12))}
+.env-flap{position:absolute;top:-46%;left:0;width:100%;height:46%;z-index:1;background:linear-gradient(180deg,#E7D7B8,#D4C096);clip-path:polygon(50% 0,0 100%,100% 100%)}
 
 :focus-visible{outline:2px solid var(--sage);outline-offset:3px;border-radius:2px}
 
@@ -119,7 +119,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
   82%{transform:translate(0,0) scale(1.04) rotate(0)}
   100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}
 }
-@keyframes letterOut{0%{opacity:0;transform:translateY(8%)}30%{opacity:1}100%{opacity:1;transform:translateY(-25%)}}
+@keyframes letterOut{0%{opacity:0;transform:translateY(8%)}30%{opacity:1}100%{opacity:1;transform:translateY(-10%)}}
 @keyframes introOut{to{opacity:0;visibility:hidden}}
 @keyframes cardArrive{0%{opacity:0;transform:translateY(22px) scale(.98)}100%{opacity:1;transform:none}}
 
