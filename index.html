@@ -199,7 +199,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
 </style>
 </head>
 <body>
-<noscript><style>.panel{display:block!important}.tabbar{display:none}.intro{display:none!important}</style></noscript>
+<noscript><style>.panel{display:block!important}.tabbar{display:none}.intro{display:none!important}.enter-gate{display:none!important}</style></noscript>
 
 <!-- icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -230,7 +230,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
   <main>
 
     <!-- ===================== INVITATION ===================== -->
-    <section class="panel is-active play" id="invitation" role="tabpanel" aria-labelledby="tab-invitation" tabindex="-1">
+    <section class="panel is-active" id="invitation" role="tabpanel" aria-labelledby="tab-invitation" tabindex="-1">
 
       <!-- one-time intro: car drives in, envelope opens, letter rises, fades to the page -->
       <div class="intro" id="intro" aria-hidden="true">
@@ -412,7 +412,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
     </div>
   </nav>
 
-  <!-- ===================== BACKGROUND SONG ===================== -->
+  <!-- ===================== BACKGROUND SONG + INTRO GATE ===================== -->
   <audio id="bg-song" loop preload="auto" src="song.m4a"></audio>
   <button id="sound-toggle" class="sound-toggle" type="button" aria-label="Play music" aria-pressed="false">
     <svg viewBox="0 0 24 24" class="snd-ico" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -422,8 +422,14 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
       <path class="snd-x" d="M15.6 9.6l4.2 4.8M19.8 9.6l-4.2 4.8"/>
     </svg>
   </button>
+  <div class="enter-gate" id="enter-gate" role="button" tabindex="0" aria-label="Tap to open the invitation">
+    <div class="enter-inner">
+      <span class="monogram enter-mono">U<span class="amp">&amp;</span>S</span>
+      <span class="enter-sub">Tap to open</span>
+    </div>
+  </div>
   <style>
-    .sound-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top));right:14px;z-index:60;
+    .sound-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top));left:14px;z-index:60;
       width:46px;height:46px;border-radius:50%;border:1px solid var(--gold);
       background:var(--paper);color:var(--terra);
       display:flex;align-items:center;justify-content:center;cursor:pointer;
@@ -439,6 +445,14 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
     .sound-toggle.is-on{background:var(--terra);color:var(--paper);border-color:var(--terra)}
     @keyframes sndPulse{0%,100%{box-shadow:0 6px 18px rgba(168,95,62,.30)}50%{box-shadow:0 7px 26px rgba(168,95,62,.55)}}
     .sound-toggle.hint{animation:sndPulse 1.9s ease-in-out infinite}
+    .enter-gate{position:fixed;inset:0;z-index:80;background:var(--cream);
+      display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;
+      transition:opacity .55s ease;-webkit-tap-highlight-color:transparent}
+    .enter-gate.gone{opacity:0;visibility:hidden;pointer-events:none}
+    .enter-inner{display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px}
+    .enter-mono{color:var(--terra);font-size:clamp(3rem,16vw,4.6rem)}
+    .enter-sub{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--slate-2);animation:gateBlink 2.2s ease-in-out infinite}
+    @keyframes gateBlink{0%,100%{opacity:.55}50%{opacity:1}}
   </style>
 </div>
 
@@ -456,9 +470,7 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 (function(){
   /* ---- intro animation: play once, then stop so it never replays ---- */
   var inv = document.getElementById('invitation');
-  window.addEventListener('load', function(){
-    setTimeout(function(){ inv.classList.remove('play'); }, 7300);
-  });
+  /* intro is started by the "tap to open" gate (script at the end of <body>) */
 
   /* ---- tabs ---- */
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabbtn'));
@@ -549,39 +561,53 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 </script>
 
 <script>
-/* ---- background song: start on first interaction (autoplay policy), toggle to mute ---- */
+/* ---- intro animation + background song both start on the single "tap to open" gesture ---- */
 (function(){
   var audio = document.getElementById('bg-song');
   var btn   = document.getElementById('sound-toggle');
-  if(!audio || !btn) return;
-  audio.volume = 0.55;
+  var gate  = document.getElementById('enter-gate');
+  var inv   = document.getElementById('invitation');
   var started = false;
+  if(audio) audio.volume = 0.55;
 
   function setOn(on){
+    if(!btn) return;
     btn.classList.toggle('is-on', on);
     btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     btn.setAttribute('aria-label', on ? 'Mute music' : 'Play music');
   }
   function play(){
+    if(!audio) return;
     var p = audio.play();
-    if(p && p.then){
-      p.then(function(){ started = true; setOn(true); btn.classList.remove('hint'); })
-       .catch(function(){ /* blocked until a user gesture */ });
-    }
+    if(p && p.then){ p.then(function(){ started = true; setOn(true); if(btn) btn.classList.remove('hint'); }).catch(function(){}); }
   }
-  btn.addEventListener('click', function(e){
-    e.stopPropagation();
-    if(audio.paused){ play(); } else { audio.pause(); setOn(false); }
-  });
-  ['pointerdown','touchstart','keydown'].forEach(function(ev){
-    document.addEventListener(ev, function(){
-      if(!started && audio.paused){ play(); }
-    }, { once:true, passive:true });
-  });
-  window.addEventListener('load', function(){
-    setTimeout(function(){ btn.classList.add('ready','hint'); }, 7300); // reveal after the intro
-  });
-  play(); // desktop browsers that permit autoplay start immediately
+  if(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(audio && !audio.paused){ audio.pause(); setOn(false); } else { play(); }
+    });
+  }
+
+  var opened = false;
+  function open(){
+    if(opened) return; opened = true;
+    play();                                   // user gesture -> audio is allowed to start
+    if(inv){
+      inv.classList.add('play');              // run the car -> envelope -> letter intro
+      setTimeout(function(){ inv.classList.remove('play'); }, 7300);
+    }
+    if(btn) setTimeout(function(){ btn.classList.add('ready','hint'); }, 6200);
+    if(gate) gate.classList.add('gone');
+  }
+  if(gate){
+    gate.addEventListener('click', open);
+    gate.addEventListener('keydown', function(e){ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(); } });
+  } else {
+    ['pointerdown','touchstart','keydown'].forEach(function(ev){
+      document.addEventListener(ev, function(){ if(!started) play(); }, { once:true, passive:true });
+    });
+    if(btn) window.addEventListener('load', function(){ setTimeout(function(){ btn.classList.add('ready','hint'); }, 800); });
+  }
 })();
 </script>
 </body>
